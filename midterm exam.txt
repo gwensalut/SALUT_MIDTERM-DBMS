@@ -1,0 +1,48 @@
+DROP DATABASE stud_info;
+CREATE DATABASE stud_info;
+
+use stud_info;
+
+CREATE TABLE students_info(
+    stud_no int PRIMARY KEY AUTO_INCREMENT,
+    StudFName varchar(50),
+    StudLName varchar(50),
+    Major varchar(50),
+    gender varchar(50),
+    homeaddress varchar(50)
+);
+
+CREATE TABLE Grade(
+
+    stud_no int,
+    SubjectCode int PRIMARY KEY AUTO_INCREMENT,
+    Grade varchar(50),
+    CONSTRAINT FKstudents_info FOREIGN KEY (stud_no) REFERENCES students_info(stud_no)
+);
+
+CREATE TABLE subject(
+    SubjectCode int PRIMARY KEY AUTO_INCREMENT,
+    SubjectDescr varchar(50),
+    CONSTRAINT FKGrade FOREIGN KEY (SubjectCode) REFERENCES Grade(SubjectCode)
+);
+
+
+
+
+CREATE DATABASE art_gallery;
+
+use art_gallery;
+
+CREATE TABLE art_customer(
+	customer_no int,
+    customer_name varchar(50),
+    address varchar(50),
+    artist_no int PRIMARY KEY AUTO_INCREMENT
+);
+
+CREATE TABLE art_artist(
+	artist_no int,
+    artist_title varchar(50),
+    artist_description varchar(50),
+    CONSTRAINT FKart_customer FOREIGN KEY (artist_no) REFERENCES art_customer(artist_no)
+);
